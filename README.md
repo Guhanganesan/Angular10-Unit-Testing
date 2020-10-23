@@ -46,3 +46,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 1. This method is used to get dummy return value using .and.returnvalue()
 2. Spyon call the original function using .and.callThrough()
 
+# Debug Element
+1. It is an interface created to work safely across different platforms
+2. It creates debugElement tree that wraps the native element paltforms instead of HTML element tree
+3. The debugElement associated with the root element of the component
+4. It comes methods and properties that are useful for testing
+5. nativeElement returns platform specific object.
+
+
+
