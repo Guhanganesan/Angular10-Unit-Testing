@@ -1,5 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import {DebugElement} from '@angular/core';
+import {By} from '@angular/platform-browser';
+
 import { AppComponent } from './app.component';
 
 import {AuthenticationService} from './authentication.service';
@@ -54,6 +57,7 @@ fdescribe('App Component Auth service', ()=>{
   let fixture   : ComponentFixture<AppComponent>;
   let authService : AuthenticationService;
   let h4 : HTMLElement;
+  let de : DebugElement;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
@@ -67,6 +71,7 @@ fdescribe('App Component Auth service', ()=>{
     authService = TestBed.get(AuthenticationService);
     component = fixture.componentInstance;
     h4 = fixture.nativeElement.querySelector('h4');
+    de = fixture.debugElement;
 
     fixture.detectChanges();
   });
@@ -91,6 +96,15 @@ fdescribe('App Component Auth service', ()=>{
     fixture.detectChanges();
     expect(h4.textContent).toBe(component.salSlip);
   });
+
+  it('Check for the debug element with DOM event', ()=>{
+    const h1 = de.query(By.css('h1'));
+    const btn = de.query(By.css('#btnAddClick'));
+    btn.triggerEventHandler('click',{});
+    fixture.detectChanges();
+    expect(component.countClicks).toEqual(parseInt(h1.nativeElement.innerText));
+  });
+
 
 
   
