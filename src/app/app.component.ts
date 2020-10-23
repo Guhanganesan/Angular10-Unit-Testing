@@ -8,6 +8,7 @@ import {AuthenticationService} from './authentication.service';
 })
 export class AppComponent {
   title = 'mytestapp';
+  salSlip : string;
   constructor(private authService : AuthenticationService)
   {
      this.authService.authenticate();
@@ -16,9 +17,11 @@ export class AppComponent {
   getSalarySlip()
   {
      if(this.authService.checkAthentication()){
-       return "Salary Slip";
+      this.salSlip = "Salary Slip";
      }
-     return "Not authenticated";
+     else{
+      this.salSlip = "Not authenticated";
+     } 
   }
 
   checkAge(age:number)

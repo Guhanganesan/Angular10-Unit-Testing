@@ -53,6 +53,7 @@ fdescribe('App Component Auth service', ()=>{
   let component : AppComponent;
   let fixture   : ComponentFixture<AppComponent>;
   let authService : AuthenticationService;
+  let h4 : HTMLElement;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
@@ -65,13 +66,16 @@ fdescribe('App Component Auth service', ()=>{
     fixture = TestBed.createComponent(AppComponent);
     authService = TestBed.get(AuthenticationService);
     component = fixture.componentInstance;
+    h4 = fixture.nativeElement.querySelector('h4');
+
     fixture.detectChanges();
   });
 
   it('should create', ()=>{
     expect(component).toBeTruthy();
   });
-
+  
+  /*
   it('should return salary slip', ()=>{
     //spyOn(authService, 'checkAthentication');
     spyOn(authService, 'checkAthentication').and.returnValue(true);
@@ -79,9 +83,15 @@ fdescribe('App Component Auth service', ()=>{
     //expect(salSlip).toBe('Salary Slip');
     expect(authService.checkAthentication).toHaveBeenCalled();
   });
+
+  */
+
+  it('h4 element value', ()=>{
+    component.getSalarySlip();//no changes 
+    fixture.detectChanges();
+    expect(h4.textContent).toBe(component.salSlip);
+  });
+
+
   
 });
-
-
-
-
