@@ -32,4 +32,20 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.content span').textContent).toContain('mytestapp app is running!');
   });
+
+  /**
+   * User defined testcase
+   */
+  it('Test age is greater than 17', ()=>
+  {
+    //Arrange
+    let obj = new AppComponent();
+    //Act
+    let res = obj.checkAge(20);
+    //Assert
+    expect(res).toEqual(20);
+  });
+
+  
+
 });

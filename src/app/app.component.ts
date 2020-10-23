@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mytestapp';
+
+  checkAge(age:number)
+  {
+    if(age>=18){
+      return age;
+    }
+    else{
+      return 0;
+    }
+  }
+  
+
 }
