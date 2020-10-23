@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthenticationService} from './authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mytestapp';
+  constructor(private authService : AuthenticationService)
+  {
+     this.authService.authenticate();
+  }
+  
+  getSalarySlip()
+  {
+     if(this.authService.checkAthentication()){
+       return "Salary Slip";
+     }
+     return "Not authenticated";
+  }
 
   checkAge(age:number)
   {
@@ -17,6 +30,6 @@ export class AppComponent {
       return 0;
     }
   }
-  
+
 
 }
