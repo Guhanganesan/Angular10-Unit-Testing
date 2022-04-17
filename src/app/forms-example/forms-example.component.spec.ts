@@ -3,7 +3,7 @@ import { FormGroup, ReactiveFormsModule, FormsModule, FormBuilder } from '@angul
 
 import { FormsExampleComponent } from './forms-example.component';
 
-fdescribe('FormsExampleComponent', () => {
+describe('FormsExampleComponent', () => {
   let component: FormsExampleComponent;
   let fixture: ComponentFixture<FormsExampleComponent>;
 
@@ -50,5 +50,25 @@ fdescribe('FormsExampleComponent', () => {
     expect(component.contactForm.valid).toEqual(true);
   });
 
+  it('should check name field', ()=>{
+    component.contactForm.get('name').setValue("guhan");
+    expect(component.contactForm.get('name').value).toEqual('guhan');
+    expect(component.contactForm.controls['name'].value).toEqual('guhan')
+  })
+
+  it('should check name field validation', ()=>{
+    component.contactForm.get('name').setValue("");
+    component.contactForm.controls['name'].touched;
+    expect(component.contactForm.controls['name'].errors.required).toEqual(true);
+  })
+
+  it('should check email field validation', ()=>{  
+    const emailInput = component.contactForm.controls.email;
+    expect(emailInput.errors.required).toBeTruthy();
+    emailInput.setValue('guhan@gmail.com');
+    expect(emailInput.errors).toBeNull();
+    emailInput.setValue("testing");
+    expect(emailInput.errors).toEqual({email:true});
+  })
 
 });

@@ -2,9 +2,20 @@
     <form [formGroup]="contactForm">
       <label for="name">Name</label>
       <input type="text" id="name" formControlName="name" />
+        <div *ngIf="contactForm.controls['name'].invalid && contactForm.controls['name'].touched" class="alert-message">
+            <div *ngIf="contactForm.controls['name'].errors.required">
+                Name is required.
+            </div>
+        </div>
 
       <label for="email">Email</label>
       <input type="email" id="email" formControlName="email" />
+
+      <div *ngIf="contactForm.controls['email'].invalid && contactForm.controls['email'].touched" class="alert-message">
+        <div *ngIf="contactForm.controls['email'].errors.required">
+            Email is required.
+        </div>
+    </div>
   
       <label for="message">Message</label>
       <textarea id="message" style="height: 200px" formControlName="message"></textarea>
