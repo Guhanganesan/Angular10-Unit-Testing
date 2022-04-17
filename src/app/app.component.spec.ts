@@ -52,7 +52,7 @@ describe('AppComponent', () => {
 });
 
 
-fdescribe('App Component Auth service', ()=>{
+describe('App Component Auth service', ()=>{
   let component : AppComponent;
   let fixture   : ComponentFixture<AppComponent>;
   let authService : AuthenticationService;
