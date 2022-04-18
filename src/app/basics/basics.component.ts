@@ -9,6 +9,9 @@ export class BasicsComponent implements OnInit {
 
   constructor() { }
 
+  name:string; 
+  age:string;
+
   ngOnInit(): void {
   }
 

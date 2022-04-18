@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
 import { BasicsComponent } from './basics.component';
 
 describe('BasicsComponent', () => {
@@ -8,7 +8,8 @@ describe('BasicsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BasicsComponent ]
+      declarations: [ BasicsComponent ],
+      imports:[FormsModule]
     })
     .compileComponents();
   });
@@ -24,10 +25,28 @@ describe('BasicsComponent', () => {
   });
 
   it('should test h1 tag element', ()=>{
-   fixture.detectChanges();
    const complied =  fixture.debugElement.nativeElement;
    expect(complied.querySelector('h2').textContent).toContain("Basics");
   })
+
+  it('should bind input text value to Component property', () => {
+    const hostElement = fixture.nativeElement;
+    //query to get input by id
+    const nameInput: HTMLInputElement = hostElement.querySelector('#name');
+    const ageInput: HTMLInputElement = hostElement.querySelector('#age');
+
+    fixture.detectChanges();
+
+    // set value to input 
+    nameInput.value = 'Guhan';
+    ageInput.value = '30';  
+
+    nameInput.dispatchEvent(new Event('input'));
+    ageInput.dispatchEvent(new Event('input'));
+
+    expect(component.name).toBe('Guhan');
+    expect(component.age).toBe('30');
+  });
 
 
 });
