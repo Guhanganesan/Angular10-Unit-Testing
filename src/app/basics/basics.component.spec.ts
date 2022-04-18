@@ -54,5 +54,40 @@ describe('BasicsComponent', () => {
     expect(component.age).toBe('30');
   });
 
+  it('should bind input text value to Component property using textcontent', () => {
+    const hostElement = fixture.nativeElement;
+    //query to get input by id
+    const nameInput: HTMLInputElement = hostElement.querySelector('#name');
+    const ageInput: HTMLInputElement = hostElement.querySelector('#age');
+
+    fixture.detectChanges();
+
+    // set value to input 
+    nameInput.value = 'Guhan';
+    ageInput.value = '30';  
+
+    nameInput.dispatchEvent(new Event('input'));
+    ageInput.dispatchEvent(new Event('input'));
+
+    expect(component.name).toBe('Guhan');
+    expect(component.age).toBe('30');
+
+    //Test inner html using textContent
+    const displayName: HTMLInputElement = hostElement.querySelector('#disp_name');
+    const displayAge: HTMLInputElement = hostElement.querySelector('#disp_age');
+
+    fixture.whenStable().then(val => {
+      nameInput.value = 'Guhan';
+      ageInput.value = '30';
+
+      nameInput.dispatchEvent(new Event('input'));
+      ageInput.dispatchEvent(new Event('input'));
+
+      fixture.detectChanges();  
+      expect(displayName.textContent).toBe('Guhan');
+      expect(displayAge.textContent).toBe('30');
+    });
+  });
+
 
 });
