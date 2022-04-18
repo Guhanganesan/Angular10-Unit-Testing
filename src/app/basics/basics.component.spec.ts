@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser'
 import { BasicsComponent } from './basics.component';
 
 describe('BasicsComponent', () => {
@@ -27,6 +28,11 @@ describe('BasicsComponent', () => {
   it('should test h1 tag element', ()=>{
    const complied =  fixture.debugElement.nativeElement;
    expect(complied.querySelector('h2').textContent).toContain("Basics");
+
+    // Using By 
+    fixture.detectChanges();
+    const de = fixture.debugElement.query(By.css('h2'));
+    expect(de.nativeElement.textContent).toEqual('Basics'); 
   })
 
   it('should bind input text value to Component property', () => {
